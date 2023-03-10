@@ -1,25 +1,30 @@
 <template>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container-fluid">
-            <img src="https://i.postimg.cc/ZKzSQhWF/pngwing-com-1.png" alt="">
+            <img src="https://i.postimg.cc/hvyPztXY/coin-mario.gif">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Products</a>
-              </li>
               <div class="d-flex">
+                <li class="nav-item">
+                  <router-link to="/">Home</router-link>
+                </li>
+                <li class="nav-item">
+                  <router-link to="/about">About</router-link>
+                </li>
+                <li class="nav-item">
+                  <router-link to="/products">Products</router-link>
+                </li>
+                <li class="nav-item">
+                  <router-link to="/contact">Contact</router-link>
+                </li>
+            </div>
+              <div class="right">
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-person-circle"></i>
+                  <i class="bi bi-person-square"></i>
                 </a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="#">Action</a></li>
@@ -40,45 +45,77 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 
 img {
-    height: 80px;
+    height: 50px;
 }
 .navbar {
-    background-color: white;
-    height: 70px;
+    background-color: black;
     opacity: 0.9;
-    font-family: 'Mynerve', cursive;
+    height: 80px;
+    font-family: 'Press Start 2P', cursive;
     font-size: 30px;
-    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5)
+    box-shadow: 0px -10px 10px 0px rgba(0, 0, 0, 0.5)
 }
-a {
-    color: black;
+.d-flex li a {
+    display: flex;
+    color: whitesmoke;
     text-decoration: none;
-    font-size: 30px;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.d-flex li a:hover{
+  color: violet;
 }
 
 .right {
   display: flex;
-  justify-content: end;
-}
-
-a:hover {
-  color: crimson;
-}
-
-button {
-  background-color: crimson;
+  margin-left: auto;
 }
 
 i.bi {
-    color: black;
-}
-
-
-
-.bi-person-circle {
     color: white;
+    margin-left: auto;
 }
+.right a{
+ margin-left: 1000%;
+}
+
+.right .dropdown-menu {
+  margin-left: 800%;
+}
+
+li{
+  color: black;
+}
+.d-flex li{
+  padding: 5px;
+}
+
+
+
+@media screen and (min-width:720px){
+
+  .d-flex {
+    width: 100%;
+    text-align: center;
+  }
+
+  .right {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  ul{
+    width: fit-content;
+    overflow: hidden;
+  }
+
+
+}
+
+
 </style>

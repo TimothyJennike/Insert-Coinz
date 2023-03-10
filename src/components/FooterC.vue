@@ -1,5 +1,5 @@
 <template>
-        <footer class="footer fixed-bottom">Timothy Jennike &copy; 2023</footer>       
+        <footer class="footer">Timothy Jennike &copy; 2023</footer>       
 </template>
 <script>
 export default {
@@ -10,9 +10,11 @@ export default {
 
 footer {
     text-align: center;
-    background-color: whitesmoke;
-    color: black;
+    background-color: black;
+    opacity: 0.9;
+    color: white;
     font: bolder;
-}
-    
+    font-family: 'Press Start 2P', cursive;
+} 
+
 </style>
