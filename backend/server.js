@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser')
 const app = express();
 
 var corsOptions = {
-    origin: "https://gameoholics-4lxv.onrender.com/"
+    origin: "http://localhost:3300"
 };
 
 app.use(cors(corsOptions));
