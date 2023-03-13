@@ -76,7 +76,7 @@ img {
 }
 
 i.bi {
-    color: white;
+    color: whitesmoke;
     margin-left: auto;
 }
 .right a{
@@ -113,8 +113,6 @@ li{
     width: fit-content;
     overflow: hidden;
   }
-
-
 }
 
 
