@@ -4,11 +4,11 @@ const cookieParser = require('cookie-parser')
 
 const app = express();
 
-var corsOptions = {
-    origin: "http://localhost:3306"
-};
+// var corsOptions = {
+//     origin: "https://insert-coinz.onrender.com"
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 app.use(function(req, res, next) {
     res.setHeader("Access-Control-Allow-Origin", "*");
