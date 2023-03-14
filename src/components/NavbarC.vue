@@ -20,11 +20,12 @@
                 <li class="nav-item">
                   <router-link to="/contact">Contact</router-link>
                 </li>
+                <li class="nav-item">
+                  <router-link to="/login">Login</router-link>
+                </li>
             </div>
-              <div class="right">
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i class="bi bi-person-square"></i>
                 </a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="#">Action</a></li>
@@ -33,7 +34,6 @@
                   <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>
               </li>
-            </div>
             </ul>
           </div>
         </div>
@@ -75,9 +75,9 @@ img {
   margin-left: auto;
 }
 
-i.bi {
+.bi {
     color: whitesmoke;
-    margin-left: auto;
+    margin-left: 100%;
 }
 .right a{
  margin-left: 1000%;

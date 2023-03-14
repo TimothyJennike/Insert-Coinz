@@ -4,11 +4,11 @@
             <div class="row">
 
             <div class="filter col-4">
-                <button id="filter" @click="sortCategory">Category</button>
+                <button id="filter" @click="sortCategory">Platform</button>
             </div>
 
             <div class="sort col-4">
-                <button id="sort" @click="sortPrice"><i class="bi bi-arrow-down"></i>Price<i class="bi bi-arrow-up"></i></button>
+                <button id="sort" @click="sortPrice">Price</button>
             </div>
 
              <div class="search col-4">
@@ -20,18 +20,20 @@
         <div class="container">
             <SpinnerC v-if="isLoading"/>
             <div v-else>
-             <div class="row"  v-if="filtering">
+             <div class="row"  v-if="filtering.length">
                     <div class="product-item g-5" v-for="product in filtering" :key="product.id" style="width: 18rem;">
                         <img :src="product.prodImg" class="card-img-top" >
                         <div class="card-body">
                           <h5 class="card-title">{{product.prodName}}</h5>
                           <div class="card-text">{{product.platform}}</div>
                           <div class="card-text">R{{product.price}}</div>
-                          <a href="../views/SingleProductView.vue" class="btn" >View Item</a>
+                          <div class="directors">
+                          <a href="./CartView.vue" class="btn">View Item</a>
+                          </div>
                         </div>
                       </div>
                     </div> 
-                      <div id="waldo" v-else><img src="https://i.postimg.cc/J0JH4D0L/228-2280941-marcoplay-super-mario-64-gif.jpg">We cant find that one Chief</div>   
+                    <div id="waldo" v-else><img src="https://i.postimg.cc/MHtJDZPB/Amused-Quaint-Alleycat-max-1mb.gif">We can't find that one...</div>   
             </div>
         </div>
        
@@ -107,13 +109,16 @@ body {
 }
 
 img {
-    height: 300px
+    height: 300px;
+    padding-top: 5px;
 }
 
 #waldo {
     padding-top: 150px;
+    display: flex;
+    justify-content: center;
     text-align: center;
-    font-size: 100px;
+    font-size: 50px;
     font-family: 'Press Start 2P', cursive;
 }
 
@@ -126,6 +131,7 @@ img {
     border-color: white;
     background-color: violet;
     color: white;
+    width: 150px;
 }
 
 #filter{
@@ -149,6 +155,8 @@ img {
     text-align: center;
     font-family: 'Press Start 2P', cursive;
     font-weight: bolder;
+    border-style: solid;
+    border-width: 3px;
     border-color: white;
     transition: all 0.3s ease-in-out;
 }
