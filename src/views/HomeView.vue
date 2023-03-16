@@ -31,7 +31,6 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
-
 }
 
 h2{
@@ -134,7 +133,7 @@ h4 {
 
 #btn a:active{
   top:10px;
-  background-color: red;
+  background-color: rgb(201, 105, 3);
   
   -webkit-box-shadow:inset 0 1px 0 #FFE5C4, inset 0 -3px 0 #915100;
   -moz-box-shadow:inset 0 1px 0 #FFE5C4, inset 0 -3pxpx 0 #915100;
@@ -169,9 +168,11 @@ h4 {
   }
 
   h2{
-    width: 100%;
+    width: 200px;
+    font-size: small;
     text-align: center;
     overflow: hidden;
+
   }
 
 

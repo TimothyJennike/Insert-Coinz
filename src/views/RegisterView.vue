@@ -12,12 +12,12 @@
                     <form @submit.prevent="registerInformation">
       
                       <div class="form-outline mb-4">
-                        <input type="text" id="form3Example1cg" class="form-control form-control-lg" v-model="register.firstName"/>
+                        <input type="text" id="form3Example1cg" required class="form-control form-control-lg" v-model="register.firstName"/>
                         <label class="form-label" for="form3Example1cg">Your Name</label>
                       </div>
 
                       <div class="form-outline mb-4">
-                        <input type="text" id="form3Example2cg" class="form-control form-control-lg" v-model="register.lastName"/>
+                        <input type="text" id="form3Example2cg" required class="form-control form-control-lg" v-model="register.lastName"/>
                         <label id="form-label" for="form3Example2cg">Your Surname</label>
                       </div>
 
@@ -26,14 +26,19 @@
                         <label id="form-label" for="form3Example2cg">Your Cellphone Number</label>
                       </div>
 
+                      <div class="form-outline mb-4">
+                        <input type="text" id="form3Example2cg" class="form-control form-control-lg" v-model="register.gender" />
+                        <label id="form-label" for="form3Example2cg">Gender</label>
+                      </div>
+
       
                       <div class="form-outline mb-4">
-                        <input type="email" id="form3Example3cg" class="form-control form-control-lg" v-model="register.emailAdd" />
+                        <input type="email" id="form3Example3cg" required class="form-control form-control-lg" v-model="register.emailAdd" />
                         <label class="form-label" for="form3Example3cg">Your Email</label>
                       </div>
       
                       <div class="form-outline mb-4">
-                        <input type="password" id="form3Example4cg" class="form-control form-control-lg" v-model="register.userPaswrd" />
+                        <input type="password" id="form3Example4cg" required class="form-control form-control-lg" v-model="register.userPaswrd" />
                         <label class="form-label" for="form3Example4cg">Password</label>
                       </div>
             
@@ -46,11 +51,11 @@
       
                       <div class="d-flex justify-content-center">
                         <button type="submit"
-                          class="btn btn-block btn-lg gradient-custom-4 text-body" >Register</button>
+                        class="btn btn-block btn-lg gradient-custom-4 text-body" >Register</button>
                       </div>
       
-                      <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="#!"
-                          class="fw-bold text-body"><u>Login here</u></a></p>
+                      <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="../views/LoginView.vue"
+                          class="fw-bold text-body"><router-link to="/login"><u>Login here</u></router-link></a></p>
       
                     </form>
       
@@ -86,8 +91,7 @@ export default {
         this.register.emailAdd = '';
         this.register.userPaswrd = '';
     }
-  }
-
+  },
 }
 </script>
 <style scoped>

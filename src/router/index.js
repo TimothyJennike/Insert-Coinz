@@ -36,6 +36,16 @@ const routes = [
     path: '/register',
     name: 'register',
     component: ()=> import('../views/RegisterView.vue')
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: ()=> import('../views/AdminView.vue')
+  },
+  {
+    path: '/Single.product',
+    name: 'Single.product',
+    component: ()=> import('../views/SingleProductView.vue')
   }
 ]
 

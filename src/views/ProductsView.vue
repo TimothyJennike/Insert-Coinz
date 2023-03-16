@@ -11,10 +11,12 @@
                 <button id="sort" @click="sortPrice">Price</button>
             </div>
 
-             <div class="search col-4">
-                 <input class="filter-input" id="search" v-model="searching" type="text" placeholder="Search">
-             </div>
+            <div class="search col-4">
+                <input class="filter-input" id="search" v-model="searching" type="text" placeholder="Search">
             </div>
+           </div>
+
+
         </div>
 
         <div class="container">
@@ -28,7 +30,7 @@
                           <div class="card-text">{{product.platform}}</div>
                           <div class="card-text">R{{product.price}}</div>
                           <div class="directors">
-                          <a href="./CartView.vue" class="btn">View Item</a>
+                          <a href="/Single.product" class="btn">View Item</a>
                           </div>
                         </div>
                       </div>
@@ -111,6 +113,8 @@ body {
 img {
     height: 300px;
     padding-top: 5px;
+    border-style: solid;
+    border-color: white;
 }
 
 #waldo {
@@ -127,6 +131,9 @@ img {
     justify-content: space-evenly;
 }
 
+.directors {
+    padding-bottom: 5px;
+}
 .btn {
     border-color: white;
     background-color: violet;
@@ -176,7 +183,6 @@ img {
     width: 100px;
 }
 
-
 #search {
     border-radius: 25px;
     border-color: white;
@@ -189,7 +195,6 @@ img {
 
 
 #searchbar {
-    padding: 15px;
     border-radius: 10px;
 }
 

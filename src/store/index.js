@@ -9,6 +9,7 @@ export default createStore({
     user: null,
     products: null,
     product: null,
+    message: null,
     asc: true,
     showSpinner: true
   },
@@ -44,7 +45,7 @@ export default createStore({
       },
   },
   actions: {
-    async login(context, payload) {
+    async loginUser(context, payload) {
       const res = await axios.post(`${InsertCoins}login`, payload);
       const {result, err} = await res.data;
       if (result) {
@@ -63,12 +64,13 @@ export default createStore({
       }
     },
     async fetchUsers(context, payload) {
-      const res = await axios.post(`${InsertCoins}users`, payload);
+      const res = await axios.get(`${InsertCoins}users`, payload);
       const {msg, err} = await res.data;
       if(msg) {
         context.commit('setUsers', msg);
       } else {
-        context.commit('setUsers', err);
+        console.log(err);
+        context.commit('setMessage', err);
       }
     },
     async updateUser(context, payload) {
@@ -88,8 +90,12 @@ export default createStore({
       } else {
         context.commit('setProducts', res.data)
       }
+    },
+    async fetchProduct({commit}, id) {
+      const res = await axios.get(`${InsertCoins}product/${id}`);
+      console.log(await res.data);
+      commit('setProduct', await res.data)
     }
-
   },
   modules: {
   }

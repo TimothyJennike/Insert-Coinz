@@ -23,6 +23,9 @@
                 <li class="nav-item">
                   <router-link to="/login">Login</router-link>
                 </li>
+                <li class="nav-item">
+                  <router-link to="/admin">Admin</router-link>
+                </li>
             </div>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -62,7 +65,7 @@ img {
     display: flex;
     color: whitesmoke;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 15px;
     margin-top: 20px;
 }
 
@@ -70,21 +73,9 @@ img {
   color: violet;
 }
 
-.right {
-  display: flex;
-  margin-left: auto;
-}
-
 .bi {
     color: whitesmoke;
     margin-left: 100%;
-}
-.right a{
- margin-left: 1000%;
-}
-
-.right .dropdown-menu {
-  margin-left: 800%;
 }
 
 li{
