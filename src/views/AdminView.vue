@@ -29,6 +29,79 @@
               </tr>
             </tbody>
           </table>
+          <!-- <button id="newProd">Create a new Product</button> -->
+          <!-- Button trigger modal -->
+    <button type="button" class="newProd" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Create a new Product
+    </button>
+
+        <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+    
+
+            <form @submit.prevent="newProduct">
+
+              <div class="form-outline mb-4">
+                <label class="form-label" for="form3Example1cg">Game Image</label>
+                <input type="URL" id="form3Example1cg" required class="form-control form-control-lg" v-model="product.prodImg"/>
+              </div>
+  
+            <div class="form-outline mb-4">
+              <label class="form-label" for="form3Example1cg">Game Name</label>
+              <input type="text" id="form3Example1cg" required class="form-control form-control-lg" v-model="product.prodName"/>
+            </div>
+
+            <div class="form-outline mb-4">
+              <label id="form-label" for="form3Example2cg">Description of Game</label>
+              <input type="text" id="form3Example2cg" required class="form-control form-control-lg" v-model="product.prodDescription"/>
+            </div>
+
+            <div class="form-outline mb-4">
+              <label id="form-label" for="form3Example2cg">Platform</label>
+              <input type="text" id="form3Example2cg" class="form-control form-control-lg" v-model="product.platform"/>
+            </div>
+
+            <div class="form-outline mb-4">
+              <label id="form-label" for="form3Example2cg">Year released</label>
+              <input type="text" id="form3Example2cg" class="form-control form-control-lg" v-model="product.yearReleased" />
+            </div>
+
+            <div class="form-outline mb-4">
+              <label class="form-label" for="form3Example3cg">Price</label>
+              <input type="number" id="form3Example3cg" required class="form-control form-control-lg" v-model="product.price" />
+            </div>
+
+            <div class="form-outline mb-4">
+              <label class="form-label" for="form3Example4cg">Developed By</label>
+              <input type="text" id="form3Example4cg" required class="form-control form-control-lg" v-model="product.developedBy" />
+            </div>
+
+            <div class="form-outline mb-4">
+              <label class="form-label" for="form3Example4cg">Quantity</label>
+              <input type="number" id="form3Example4cg" required class="form-control form-control-lg" v-model="product.quantity" />
+            </div>
+
+            <div class="d-flex justify-content-center">
+              <button type="submit"
+              class="btn bg-success btn-block btn-lg gradient-custom-4 text-body" >Create</button>
+            </div>
+
+            
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+            
+          </form>
+
+    </div>
+  </div>
+</div>
 
           <table class="table mx-5">
             <thead>
@@ -41,12 +114,12 @@
                 <th scope="col">Update</th>
               </tr>
             </thead>
-            <tbody v-for="user in users" :key="user.firstName">
+            <tbody v-for="users in user" :key="users">
               <tr>
-                <td>{{user.firstName}}</td>
-                <td>{{user.lastName}}</td>
-                <td>{{user.emailAdd}}</td>
-                <td>{{user.gender}}</td>
+                <td>{{users.firstName}}</td>
+                <td>{{users.lastName}}</td>
+                <td>{{users.emailAdd}}</td>
+                <td>{{users.gender}}</td>
                 <td><button id="delete">Delete</button></td>
                 <td><button id="update" >Update</button></td>
               </tr>
@@ -72,7 +145,16 @@ export default {
   data(){
     return {
       isLoading: true,
-      user: null,
+      product: {
+        prodName: '',
+        prodImg: '',
+        prodDescription: '',
+        platform: '',
+        yearReleased: '',
+        price: '',
+        developedBy: '',
+        quantity: ''
+      }
     }
   },
   created(){
@@ -91,14 +173,24 @@ export default {
             users
         }   
 },
-// computed: {
-//         product() {
-//             return this.$store.state.products
-//         },
-//         user() { 
-//           return this.$store.state.users
-//         }
-// },
+computed: {
+        user() { 
+          return this.$store.state.users
+        }
+},
+methods: {
+  async newProduct() {
+    await this.$store.dispatch('createProduct', this.product);
+    this.product.prodName = '';
+    this.product.prodDescription = '';
+    this.product.platform = '';
+    this.product.prodImg = '';
+    this.product.yearReleased = '';
+    this.product.price = '';
+    this.product.developedBy = '';
+    this.product.quantity = '';
+  }
+}
 }
 </script>
 
@@ -133,12 +225,41 @@ td{
     text-align: center;
 }
 
+.newProd {
+  margin-left: 40%;
+  text-align: center;
+  display: inline-block;
+  font-family: 'Press Start 2P', cursive;
+  width: 18rem;
+  font-weight: bold;
+  padding: 10px 0 10px 10px ;
+  background-color: lightgray;
+  text-shadow: -1px -1px black, 1px 1px white;
+  -webkit-border-radius: 7px;
+-moz-border-radius: 7px;
+-o-border-radius: 7px;
+border-radius: 7px;
+  box-shadow: 0 .2em gray; 
+  cursor: pointer;
+}
+
+.newProd {
+  text-decoration: none;
+  color: gray;
+}
+
+.newProd:active {
+	box-shadow: none;
+	position: relative;
+	top: .2em;
+}
+
 #game {
     color: black;
     padding-left: 190px;
 }
 
-#platform {
+#platform, #price, #quan {
   color: black;
 }
 

@@ -1,6 +1,8 @@
 <template>
     <div class="single-product" v-if="product">
-        <div class="row">
+      <SpinnerC v-if="isLoading" />
+      <div v-else>
+            <div class="row">
             <div class="col-6">
                 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
@@ -25,22 +27,50 @@
                   </div>
             </div>
             <div class="col-6">
-
+              <div>
+                <h4>{{product.prodName}}</h4>
+              </div>
             </div>
         </div>
+      </div>
         
     </div>
 </template>
 <script>
+import {useStore} from 'vuex';
+import SpinnerC from '../components/SpinnerC.vue'
+import {computed} from '@vue/runtime-core';
+
 export default {
-    props: ['id'],
-    computed: {
-        product() {
-            return this.$store.state.product;
-        }
+    // computed: {
+    //     product() {
+    //       console.log(this.$store.state.product);
+    //         return this.$store.state.product;
+    //     }
+    // },
+    components: {
+      SpinnerC
+    },
+    data() {
+      return {
+        isLoading: true,
+      }
+    },
+    created(){
+      setTimeout(()=> {
+        this.isLoading =false;
+      }, 2000);
+    },
+    setup(){
+      const store = useStore();
+      const product = computed(() => store.state.product);
+      return {
+        product
+      }
     },
     mounted() {
-        this.$store.dispatch("fetchProduct", this.userID)
+        this.$store.dispatch("fetchProduct", this.$route.params.id)
+        console.log(this.$route.params.prodID);
     }
     
 }
@@ -49,8 +79,18 @@ export default {
 <style scoped>
 
 .single-product{
-    background-color: yellow;
     color: black;
+    overflow: hidden;
+}
+
+.carousel-inner{
+  height: 100%;
+}
+
+img{
+  height: 500px;
+  margin-top: 100px;
+  margin-left: 50px;
 }
     
 </style>

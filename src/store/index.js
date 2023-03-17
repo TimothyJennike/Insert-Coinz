@@ -31,6 +31,9 @@ export default createStore({
       setSpinner(state, values) {
         state.showSpinner = values
       },
+      setPeople(state, people) {
+        state.people = people
+      },
       setMessage(state, values) {
         state.message = values
       },
@@ -63,14 +66,22 @@ export default createStore({
         context.commit('setMessage', err);
       }
     },
-    async fetchUsers(context, payload) {
-      const res = await axios.get(`${InsertCoins}users`, payload);
+    async createProduct(context, payload) {
+      const res = await axios.post(`${InsertCoins}product`,payload)
       const {msg, err} = await res.data;
       if(msg) {
-        context.commit('setUsers', msg);
+        context.commit('setMessage', msg);
       } else {
-        console.log(err);
         context.commit('setMessage', err);
+      }
+    },
+    async fetchUsers(context) {
+      const res = await axios.get(`${InsertCoins}users`);
+      console.log(await res.data)
+      if(res.data !== undefined){
+        context.commit('setUsers', res.data)
+      } else {
+        context.commit('setUsers', res.data)
       }
     },
     async updateUser(context, payload) {
@@ -91,11 +102,11 @@ export default createStore({
         context.commit('setProducts', res.data)
       }
     },
-    async fetchProduct({commit}, id) {
-      const res = await axios.get(`${InsertCoins}product/${id}`);
-      console.log(await res.data);
-      commit('setProduct', await res.data)
-    }
+    async fetchProduct(context, prodID) {
+      const res = await axios.get(`${InsertCoins}product/${prodID}`);
+      context.commit('setProduct', res.data)
+      context.commit('setSpinner', false)
+    },
   },
   modules: {
   }

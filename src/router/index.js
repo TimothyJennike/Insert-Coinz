@@ -43,8 +43,8 @@ const routes = [
     component: ()=> import('../views/AdminView.vue')
   },
   {
-    path: '/Single.product',
-    name: 'Single.product',
+    path: '/single.product/:id',
+    name: 'single.product',
     component: ()=> import('../views/SingleProductView.vue')
   }
 ]

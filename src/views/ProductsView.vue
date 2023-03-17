@@ -30,7 +30,8 @@
                           <div class="card-text">{{product.platform}}</div>
                           <div class="card-text">R{{product.price}}</div>
                           <div class="directors">
-                          <a href="/Single.product" class="btn">View Item</a>
+                          <!-- <a href="/Single.product" class="btn">View Item</a> -->
+                          <router-link :to="{name:'single.product', params:{id:product.prodID}}"><a href="/Single.product" class="btn">View Item</a></router-link>
                           </div>
                         </div>
                       </div>
@@ -77,7 +78,7 @@ export default {
             platforms: ['Playstation', 'Xbox']
         }
     },
-    computed: {
+    computed: { 
         products() {
             return this.$store.state.products;      
         },
@@ -110,7 +111,7 @@ body {
     color: white; 
 }
 
-img {
+.card-img-top {
     height: 300px;
     padding-top: 5px;
     border-style: solid;
@@ -124,6 +125,10 @@ img {
     text-align: center;
     font-size: 50px;
     font-family: 'Press Start 2P', cursive;
+}
+
+#waldo img{
+    height: 300px;
 }
 
 .navigators {
