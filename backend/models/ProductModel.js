@@ -23,7 +23,7 @@ Products.create = (newProduct, result) => {
 };
 
 Products.findById = (id, result) => {
-    sql.query(`SELECT * FROM Products WHERE id = ${id}`, (err, res) => {
+    sql.query(`SELECT * FROM Products WHERE prodID = ${id}`, (err, res) => {
         if(err) {
             console.log("error: ", err);
             result(err, null);
