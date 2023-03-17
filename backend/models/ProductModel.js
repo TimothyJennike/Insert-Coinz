@@ -73,8 +73,8 @@ Products.updateById = (id, product, result) => {
 };
 
 Products.remove = (id, result) => {
-    sql.query("DELETE FROM Products WHERE id = ?", id, (err, res) => {
-        if (err) {
+    sql.query("DELETE FROM Products WHERE prodID = ?", id, (err, res) => {
+        if(err) {
             console.log("error: ", err);
             result(null, err);
             return;
@@ -83,7 +83,7 @@ Products.remove = (id, result) => {
             result({kind: "not_found"}, null);
             return;
         }
-        console.log("deleted product with id: ", id);
+        console.log("Deleted product with ID: ", id);
         result(null, res);
     });
 };

@@ -83,7 +83,7 @@ exports.update = (req, res) => {
     );
 };
 
-exports.delete = (req, res) => {
+exports.deleteProduct = (req, res) => {
     Product.remove(req.params.id, (err, data) => {
         if(err) {
             if(err.kind === "not_found") {

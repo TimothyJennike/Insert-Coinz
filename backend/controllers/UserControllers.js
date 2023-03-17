@@ -133,7 +133,7 @@ exports.update = (req, res) => {
 };
 
 
-exports.delete = (req, res) => {
+exports.deleteUser = (req, res) => {
     User.remove(req.params.id, (err, data) => {
         if(err) {
             if(err.kind === "not_found") {
