@@ -1,5 +1,5 @@
 <template>
-        <footer class="footer">Timothy Jennike &copy; 2023</footer>       
+        <footer class="footer static-bottom">Timothy Jennike &copy; 2023</footer>       
 </template>
 <script>
 export default {
@@ -17,4 +17,4 @@ footer {
     font-family: 'Press Start 2P', cursive;
 } 
 
-</style>
+</style >

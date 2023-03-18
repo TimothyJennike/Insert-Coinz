@@ -24,7 +24,7 @@
                 <td>R{{product.price}}</td>
                 <td>{{product.quantity}}</td>
                 <td><img :src="product.prodImg"></td>
-                <td><button id="delete">Delete</button></td>
+                <td><button id="delete" @submit.prevent="deleteProduct">Delete</button></td>
                 <td><button id="update" >Update</button></td>
               </tr>
             </tbody>
@@ -40,7 +40,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Create a new Product</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
     
@@ -102,6 +102,8 @@
     </div>
   </div>
 </div>
+
+            <h3 id="users">Users</h3>
 
           <table class="table mx-5">
             <thead>
@@ -189,9 +191,16 @@ methods: {
     this.product.price = '';
     this.product.developedBy = '';
     this.product.quantity = '';
+  },
+  async deleteProduct() {
+    await this.$store.dispatch("deleteProduct", this.$route.params.id)
   }
+},
+// mounted() {
+//   this.$store.dispatch("deleteProduct", this.$route.params.id)
+// } 
 }
-}
+
 </script>
 
 <style scoped>
@@ -217,6 +226,14 @@ th{
     color: white;
     font-size: 25px;
     text-decoration: underline;
+}
+
+h1{
+  margin-left: 9rem;
+}
+
+#users{
+  padding-top: 50px;
 }
 
 td{
@@ -268,6 +285,15 @@ img {
   width: 80px;
   border-color: black;
   border-style: solid;
+}
+
+input{
+  border-style: solid;
+  border-color: black;
+}
+
+input:focus{
+  background-color: violet;
 }
 
 h2 {

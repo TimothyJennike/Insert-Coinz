@@ -107,6 +107,10 @@ export default createStore({
       context.commit('setProduct', res.data)
       context.commit('setSpinner', false)
     },
+    async deleteProduct(context, prodID) {
+      const res = await axios.delete(`${InsertCoins}product/${prodID}`);
+      context.commit('setProduct', res.data)
+    }
   },
   modules: {
   }

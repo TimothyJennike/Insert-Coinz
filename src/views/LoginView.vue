@@ -48,7 +48,7 @@
       </section>
 </template>
 <script>
-// import { useCookies } from "vue3-cookies";
+import { useCookies } from "vue3-cookies";
 
 export default {
     data() {
@@ -66,16 +66,16 @@ export default {
                 this.login.userPass = ''
         }
     },
-    // setup() {
-    //     const { cookies } = useCookies();
-    //     return { cookies }
-    // },
+    setup() {
+        const { cookies } = useCookies();
+        return { cookies }
+    },
 
-    // mounted() {
-    //     let my_cookie_value = this.cookies.get("legit");
-    //     console.log(my_cookie_value);
-    //     return { my_cookie_value };
-    // }
+    mounted() {
+        let my_cookie_value = this.cookies.get("legit");
+        console.log(my_cookie_value);
+        return { my_cookie_value };
+    }
 }
 
 </script>
