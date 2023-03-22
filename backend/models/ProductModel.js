@@ -55,7 +55,7 @@ Products.getAll = (prodName, result) => {
 };
 
 Products.updateById = (id, product, result) => {
-    sql.query('UPDATE Products SET prodName = ?, prodDescription = ?, platform = ?, price = ?, quantity = ?, prodImg = ?, userID = ? WHERE id = ?', [product.prodName,product.prodDescription, product.platform, product.price, product.quantity, product.prodImg, product.userID, id],
+    sql.query('UPDATE Products SET prodName = ?, prodDescription = ?, platform = ?, price = ?, quantity = ?, prodImg = ?, userID = ? WHERE id = ??', [product.prodName,product.prodDescription, product.platform, product.price, product.quantity, product.prodImg, product.userID, id],
     (err, res) => {
         if(err) {
             console.log("error: ", err);

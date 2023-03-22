@@ -6,7 +6,7 @@ module.exports = app => {
 
     const user = require("../controllers/UserControllers.js");
     router.post("/register", user.create);
-    router.post("/login", user.loginUser);
+    router.post("/login",createToken, user.loginUser);
     router.get("/users", user.findAll);
     router.get("/user/:id", user.findOne);
     router.put("/user/:id", user.update);
@@ -15,7 +15,7 @@ module.exports = app => {
     const product = require('../controllers/ProductControllers');
     router.post("/product", product.create);
     router.get("/products", product.findAll);
-    router.get("/product/:id", product.findOne);
+    router.get("/product/:id",requireAuth, verifyAToken, product.findOne);
     router.put("/product/:id", product.update);
     router.delete("/product/:id", product.deleteProduct);
 
