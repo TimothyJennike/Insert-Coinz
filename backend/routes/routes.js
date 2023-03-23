@@ -15,7 +15,7 @@ module.exports = app => {
     const product = require('../controllers/ProductControllers');
     router.post("/product", product.create);
     router.get("/products", product.findAll);
-    router.get("/product/:id",requireAuth, verifyAToken, product.findOne);
+    router.get("/product/:id",verifyAToken, requireAuth, product.findOne);
     router.put("/product/:id", product.update);
     router.delete("/product/:id", product.deleteProduct);
 

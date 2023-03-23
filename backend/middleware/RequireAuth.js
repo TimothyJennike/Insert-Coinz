@@ -1,9 +1,10 @@
-const {verifyAToken} = ('./AuthenticatedUser.js');
+const {verifyAToken} = require('./AuthenticatedUser.js');
 
 function requireAuth(req, res, next) {
     if(req.authenticated) {
         next();
-    } else {
+    } 
+    else {
         res.status(401).json({message: 'You must be logged in to access this resource'});
     }
 }
