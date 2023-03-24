@@ -1,6 +1,7 @@
 const sql = require('./db.js');
 
 const Users = function(user) {
+    this.userID = user.userID;
     this.firstName = user.firstName;
     this.lastName = user.lastName;
     this.gender = user.gender;
@@ -25,7 +26,7 @@ Users.create = (newUser, result) => {
 };
 
 Users.login = (user, result) => {
-    sql.query('SELECT firstName, lastName, gender, cellphoneNumber, emailAdd, userPaswrd, userRole, userProfile, joinDate FROM Users WHERE emailAdd = ?', [user.emailAdd], async (err, res) =>{
+    sql.query('SELECT userID, firstName, lastName, gender, cellphoneNumber, emailAdd, userPaswrd, userRole, userProfile, joinDate FROM Users WHERE emailAdd = ?', [user.emailAdd], async (err, res) =>{
         if(err) {
             console.log('error', err);
             result(err, null)

@@ -19,5 +19,11 @@ module.exports = app => {
     router.put("/product/:id", product.update);
     router.delete("/product/:id", product.deleteProduct);
 
+    const cart = require('../controllers/CartControllers');
+    router.post("/user/:id/cart", cart.create);
+    router.get("/user/:id/carts", cart.findAll);
+    router.put("/user/:id/cart", cart.update);
+    router.delete("/user/:id/cart", cart.delete);
+
     app.use('/', router);
 };
