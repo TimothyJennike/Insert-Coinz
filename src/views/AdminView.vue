@@ -5,9 +5,11 @@
         <h3>Products</h3>
         <SpinnerC v-if="isLoading" />
         <div v-else>
-        <table class="table mx-5">
+          <div class="table-responsive-md">
+            <table class="table mx-5">
             <thead>
               <tr>
+                <th id="id" scope="col">Id</th>
                 <th id="game" scope="col">Game</th>
                 <th id="platform" scope="col">Platform</th>
                 <th id="price" scope="col">Price</th>
@@ -19,18 +21,19 @@
             </thead>
             <tbody v-for="product in products" :key="product">
               <tr>
+                <td>{{product.prodID}}</td>
                 <td>{{product.prodName}}</td>
                 <td>{{product.platform}}</td>
                 <td>R{{product.price}}</td>
                 <td>{{product.quantity}}</td>
                 <td><img :src="product.prodImg"></td>
-                <td><button id="delete" @submit.prevent="deleteProduct">Delete</button></td>
-                <td><button id="update" >Update</button></td>
+                <td><button id="delete" @click="deleteProduct(product.prodID)"><i class="bi bi-trash3"></i></button></td>
+                <td><button id="update"><i class="bi bi-pen"></i></button></td>
               </tr>
             </tbody>
           </table>
-          <!-- <button id="newProd">Create a new Product</button> -->
-          <!-- Button trigger modal -->
+          </div>
+          
     <button type="button" class="newProd" data-bs-toggle="modal" data-bs-target="#exampleModal">
       Create a new Product
     </button>
@@ -104,13 +107,13 @@
 </div>
 
             <h3 id="users">Users</h3>
-
-          <table class="table mx-5">
+          <div class="table-responsive-md">
+            <table class="table mx-5">
             <thead>
               <tr>
-                <th id="game" scope="col">Firstname</th>
-                <th scope="col">Lastname</th>
-                <th scope="col">Email Address</th>
+                <th id="game" scope="col">Name</th>
+                <!-- <th scope="col">Lastname</th> -->
+                <th id="email" scope="col">Email Address</th>
                 <th scope="col">Gender</th>
                 <th scope="col">Delete</th>
                 <th scope="col">Update</th>
@@ -118,15 +121,17 @@
             </thead>
             <tbody v-for="users in user" :key="users">
               <tr>
-                <td>{{users.firstName}}</td>
-                <td>{{users.lastName}}</td>
+                <td>{{users.firstName}} {{users.lastName}}</td>
+                <!-- <td>{{users.userProfile}}</td> -->
                 <td>{{users.emailAdd}}</td>
                 <td>{{users.gender}}</td>
-                <td><button id="delete">Delete</button></td>
-                <td><button id="update" >Update</button></td>
+                <td><button id="delete" @click="deleteUser(users.userID)"><i class="bi bi-trash3"></i></button></td>
+                <td><button id="update" ><i class="bi bi-pen"></i></button></td>
               </tr>
             </tbody>
           </table>
+
+          </div>
 
           </div>
           <br>
@@ -167,6 +172,7 @@ export default {
   setup() {
         const store = useStore();
         store.dispatch("fetchProducts");
+        // store.dispatch("editProduct");
         store.dispatch("fetchUsers");
         let users = computed(() => store.state.users)
         let products = computed(() => store.state.products)
@@ -192,13 +198,12 @@ methods: {
     this.product.developedBy = '';
     this.product.quantity = '';
   },
-  async deleteProduct() {
-    await this.$store.dispatch("deleteProduct", this.$route.params.id)
-  }
-},
-// mounted() {
-//   this.$store.dispatch("deleteProduct", this.$route.params.id)
-// } 
+  deleteUser(id) {
+    this.$store.dispatch('deleteUser', id)
+  },
+  deleteProduct(id) {
+    this.$store.dispatch('deleteProduct', id)
+  }},
 }
 
 </script>
@@ -242,8 +247,21 @@ td{
     text-align: center;
 }
 
+#id {
+  letter-spacing: 2px;
+  color: black;
+}
+
+#image, #email {
+  color: black;
+}
+
+i {
+  color: black;
+}
+
 .newProd {
-  margin-left: 40%;
+  margin-left: 10%;
   text-align: center;
   display: inline-block;
   font-family: 'Press Start 2P', cursive;
@@ -346,10 +364,29 @@ h3 {
 }
 
 @media screen and (max-width: 720px) {
-        .table{
-          width: 100%;
-          overflow: hidden;
-        }
+  .table{
+   width: 100%;
+  overflow: hidden;
+  }
+
+  h3{
+    font-size: x-large;
+  }
+  .table-responsive-md{
+    width: 100%;
+  }
+
+  button{
+    width: 100%;
+  }
+
+  th{
+    color: black;
+  }
+  button .newProd{
+    justify-items: center;
+    margin: auto;
+  }
 }
 
 </style>

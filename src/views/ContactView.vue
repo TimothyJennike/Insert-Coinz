@@ -124,6 +124,11 @@ input {
     .btn {
         justify-items: center;
     }
+
+    p{
+        font-size: small;
+    }
+
 }
 
     

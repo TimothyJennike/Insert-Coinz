@@ -9,10 +9,10 @@
                   <div class="card-body p-5">
                     <h2 class="text-uppercase text-center mb-5">Create an account</h2>
       
-                    <form @submit.prevent="registerInformation">
+                    <form @submit.prevent="registerInformation" role="form">
       
                       <div class="form-outline mb-4">
-                        <input type="text" id="form3Example1cg" required class="form-control form-control-lg" v-model="register.firstName"/>
+                        <input type="text" id="form3Example1cg" required data-error="Enter your Name" class="form-control form-control-lg" v-model="register.firstName"/>
                         <label class="form-label" for="form3Example1cg">Your Name</label>
                       </div>
 
@@ -26,9 +26,25 @@
                         <label id="form-label" for="form3Example2cg">Your Cellphone Number</label>
                       </div>
 
-                      <div class="form-outline mb-4">
-                        <input type="text" id="form3Example2cg" class="form-control form-control-lg" v-model="register.gender" />
-                        <label id="form-label" for="form3Example2cg">Gender</label>
+                      <div class="col-md-6 mb-4">
+                        <h6 class="mb-2 pb-1">Gender:</h6>
+    
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
+                            value="Female" checked v-model="register.gender" />
+                          <label class="form-check-label" for="femaleGender">Female</label>
+                        </div>
+    
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
+                            value="Male" v-model="register.gender" />
+                          <label class="form-check-label" for="maleGender">Male</label>
+                        </div>
+                      </div>
+    
+                      <div class="form-outline mb4">
+                        <input type="URL" id="form3Example2cg" class="form-control form-control-lg" v-model="register.userProfile" />
+                        <label id="form-label" for="form3Example2cg">Profile Picture</label>
                       </div>
 
       
@@ -78,6 +94,7 @@ export default {
         lastName: '',
         cellphoneNumber: '',
         emailAdd: '',
+        userProfile: '',
         userPaswrd: '',
       }
     }
@@ -89,7 +106,10 @@ export default {
         this.register.lastName = '';
         this.register.cellphoneNumber = '';
         this.register.emailAdd = '';
+        this.register.userProfile = '';
         this.register.userPaswrd = '';
+        alert('Successfully registered'),
+        this.$router.push('/login')
     }
   },
 }

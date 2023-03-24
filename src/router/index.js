@@ -28,9 +28,10 @@ const routes = [
     component: () => import('../views/LoginView.vue')    
   },
   {
-    path: '/cart',
+    path: '/user/:id/cart',
     name: 'cart',
-    component: () => import('../views/CartView.vue')
+    component: () => import('../views/CartView.vue'),
+    props: true
   },
   {
     path: '/register',
@@ -45,7 +46,14 @@ const routes = [
   {
     path: '/single.product/:id',
     name: 'single.product',
-    component: ()=> import('../views/SingleProductView.vue')
+    component: ()=> import('../views/SingleProductView.vue'),
+    props: true
+  },
+  {
+    path: '/userprofile/:id',
+    name: 'userprofile',
+    component: ()=> import('../views/UserProfileView.vue'),
+    props: true
   }
 ]
 

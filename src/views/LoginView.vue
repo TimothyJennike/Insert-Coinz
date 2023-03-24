@@ -1,12 +1,10 @@
 <template>
     <section class="h-100 gradient-form">
-        <div class="container py-5 h-100">
+        <div class="container py-5">
           <div class="row d-flex justify-content-center align-items-center h-100 ">
-            <div class="col-xl-10">
               <div class="card rounded-3 text-black">
-                <div class="row g-0">
-                  <div class="col-lg-12">
-                    <div class="card-body p-sm-5 mx-md-4">
+                  <div class="col-12">
+                    <div class="card-body p-sm-5 ">
       
                       <div class="text-center">
                         <h4 class="mt-1 mb-5 pb-1">Insert<img src="https://i.postimg.cc/htRB5JbR/png-clipart-computer-icons-slot-machine-coin-slot-game-angle-thumbnail.png"> Coinz</h4>
@@ -40,9 +38,7 @@
       
                     </div>
                   </div>
-                </div>
               </div>
-            </div>
           </div>
         </div>
       </section>
@@ -63,7 +59,9 @@ export default {
         async loginCredentials() {
             await this.$store.dispatch('loginUser', this.login);
             this.login.emailAdd = '',
-                this.login.userPass = ''
+                this.login.userPass = '',
+                alert('Successfully logged in'),
+                this.$router.push('/products')
         }
     },
     setup() {
@@ -141,6 +139,32 @@ form input:focus{
     width: 100%;
     overflow: hidden;
   }
+
+  section{
+    width: 100%;
+  }
+
+  form{
+    text-align: center;
+    width: 50%;
+  }
+
+   h4{
+    text-align: center;
+    width: 100%;
+  }
+
+  .card-body{
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .row{
+    width: 50%;
+  }
+
+
+
 } 
 
 

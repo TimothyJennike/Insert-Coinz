@@ -21,29 +21,38 @@
                   <router-link to="/contact">Contact</router-link>
                 </li>
                 <li class="nav-item">
-                  <router-link to="/login">Login</router-link>
-                </li>
-                <li class="nav-item">
                   <router-link to="/admin">Admin</router-link>
                 </li>
+                <li class="nav-item">
+                  <router-link to="/login">Login</router-link>
+                </li>
+                <li class="nav-item" v-if="user">
+                  <router-link :to="`/userprofile/${user.userID}`">Profile</router-link>
+                </li>
+                <li class="nav-item-cart" v-if="user">
+                  <router-link :to="`/user/${user.userID}/cart`">Cart</router-link>
+                </li>
             </div>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li>
             </ul>
           </div>
         </div>
       </nav>
 </template>
 <script>
+
+import Cookies from 'js-cookie'
+
 export default {
+  props: ['id'],
+  computed: {
+    user() {
+      return this.$store.state.user
+    },
+  },
+  mounted(){
+    const userID = Cookies.get('userID', {path: '/'})
+    this.$store.dispatch('fetchUser', userID)
+  }
     
 }
 </script>
@@ -69,6 +78,10 @@ img {
     margin-top: 20px;
 }
 
+.nav-item-2 {
+  margin-left: 40rem;
+}
+
 .d-flex li a:hover{
   color: violet;
 }
@@ -77,6 +90,12 @@ img {
     color: whitesmoke;
     margin-left: 100%;
 }
+
+.bi.bi {
+  display: flex;
+  justify-content: flex-end;
+}
+
 
 li{
   color: black;

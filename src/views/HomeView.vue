@@ -6,7 +6,7 @@
           </header>
             <div class="StreetF">
               <img src="https://i.postimg.cc/x1YdgWPd/ryu-hdstance.gif" alt="ryu">
-              <button id="btn"><a href="/about">Start</a></button>
+              <button id="btn"><a href="/login">Start</a></button>
               <img id="Ken" src="https://i.postimg.cc/25SQHzRk/ezgif-com-rotate.gif" alt="Ken">
             </div>
           <div>
@@ -172,7 +172,10 @@ h4 {
     font-size: small;
     text-align: center;
     overflow: hidden;
+  }
 
+  img{
+    display: none;
   }
 
 

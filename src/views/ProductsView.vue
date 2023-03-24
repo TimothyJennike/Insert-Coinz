@@ -1,17 +1,19 @@
 <template>
     <body>
         <div class="navigators">
-            <div class="row">
+            <div class="row ">
 
-            <div class="filter col-4">
-                <button id="filter" @click="sortCategory">Platform</button>
-            </div>
+                <!-- <button id="sort" @click="sortPrice">Price</button> -->
+                <div class="sort col`">
+                    <button class="btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      Filter by:
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><button class="dropdown-item" @click="sortPrice">Price</button></li>
+                    </ul>
+                  </div>
 
-            <div class="sort col-4">
-                <button id="sort" @click="sortPrice">Price</button>
-            </div>
-
-            <div class="search col-4">
+            <div class="search col-1">
                 <input class="filter-input" id="search" v-model="searching" type="text" placeholder="Search">
             </div>
            </div>
@@ -22,7 +24,7 @@
         <div class="container">
             <SpinnerC v-if="isLoading"/>
             <div v-else>
-             <div class="row"  v-if="filtering.length">
+             <div class="row d-flex flex-column flex-md-row"  v-if="filtering.length">
                     <div class="product-item g-5" v-for="product in filtering" :key="product.id" style="width: 18rem;">
                         <img :src="product.prodImg" class="card-img-top" >
                         <div class="card-body">
@@ -156,6 +158,10 @@ body {
     width: 100px;
 }
 
+button #dropdownMenuButton{
+    width: 100px;
+}
+
 .row {
     margin: auto;
     display: flex;
@@ -178,29 +184,44 @@ body {
 
 }
 
-#sort {
+.sort {
+    justify-content: flex-start;
     border-radius: 25px;
-    border-color: white;
-    background-color: black;
-    color: white;
-    font-family: 'Mynerve', cursive;
+    font-family: 'Press Start 2P', cursive;
     height: 50px;
     width: 100px;
 }
+
+.btn-secondary{
+    border-color: white;
+    border-radius: 10px;
+    height: 50px;
+    background-color: violet;
+    color: white;
+}
+
+#search.filter-input{
+    border-color: white;
+    border-style: solid;
+    border-radius: 10px;
+    height: 50px;
+    background-color: violet;
+    color: white; 
+}
+
 
 #search {
     border-radius: 25px;
     border-color: white;
     background-color: black;
     color: white;
-    font-family: 'Mynerve', cursive;
+    font-family: 'Press Start 2P', cursive;
     height: 50px;
-    width: 100px;
+    width: 150px;
 }
 
-
-#searchbar {
-    border-radius: 10px;
+::placeholder {
+    color: white;
 }
 
 input[type=text]:focus {
@@ -215,12 +236,16 @@ input[type=text]:focus {
 .navigators {
     align-items: center;
     justify-content: space-between;
-    margin: auto;
+    margin-right: 10%;
 }
 
 @media screen and (max-width: 720px) {
 
     header {
+        width: 100%;
+    }
+
+    .product-item{
         width: 100%;
     }
 
@@ -243,6 +268,13 @@ input[type=text]:focus {
         width: 100%;
         overflow: hidden;
     }
+
+    img{
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+
 
 }    
 

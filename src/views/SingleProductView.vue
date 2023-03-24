@@ -1,9 +1,9 @@
 <template>
-    <div class="single-product" v-if="product">
+    <div class="single-product container-fluid" v-if="product">
       <SpinnerC v-if="isLoading" />
       <div v-else>
-            <div class="row">
-            <div class="col-6">
+            <div class="row d-flex flex-column flex-md-row">
+            <div class="col-6 col-md-6">
                 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                       <div class="carousel-item active">
@@ -24,22 +24,22 @@
                       <span class="carousel-control-next-icon" aria-hidden="true"></span>
                       <span class="visually-hidden">Next</span>
                     </button>
-                    <router-link to="/products"><button id="return">Return to products</button></router-link>
                   </div>
             </div>
-            <div class="col-6">
+            <div class="col-6 col-md-6">
               <div class="Information">
-                <h4>Name: {{product.prodName}}</h4>
-                <h4>Released: {{product.yearReleased}}</h4>
-                <h4>Description: {{product.prodDescription}}</h4>
-                <h4>Platform: {{product.platform}}</h4>
-                <h4>Developed by: {{product.developedBy}}</h4>
-                <h4>Quantity: {{product.quantity}}</h4>
-                <h4>Price: R{{product.price}}</h4>
-                <!-- <router-link to="/cart"><button>Add to Cart</button></router-link> -->
+                <h4>Name: {{product?.prodName}}</h4>
+                <h4>Released: {{product?.yearReleased}}</h4>
+                <h4>Description: {{product?.prodDescription}}</h4>
+                <h4>Platform: {{product?.platform}}</h4>
+                <h4>Developed by: {{product?.developedBy}}</h4>
+                <h4>Quantity: {{product?.quantity}}</h4>
+                <h4>Price: R{{product?.price}}</h4>
+                <button id="Cart">Add to Cart</button>
               </div>
             </div>
         </div>
+        <router-link to="/products"><button id="return">Return to products</button></router-link>
       </div>
         
     </div>
@@ -56,6 +56,7 @@ export default {
     //         return this.$store.state.product;
     //     }
     // },
+    props: ['id'],
     components: {
       SpinnerC
     },
@@ -77,10 +78,9 @@ export default {
       }
     },
     mounted() {
-        this.$store.dispatch("fetchProduct", this.$route.params.id)
-        console.log(this.$route.params.prodID);
-    }
-    
+        this.$store.dispatch("fetchProduct", this.id)
+        console.log(this.id);
+    }   
 }
 </script>
 
@@ -140,16 +140,57 @@ border-radius: 7px;
   cursor: pointer;
 }
 
-#return a{
+#Cart {
+  text-align: center;
+  display: inline-block;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+  width: 18rem;
+  font-weight: bold;
+  padding: 10px 0 10px 10px ;
+  background-color: lightgray;
+  text-shadow: -1px -1px black, 1px 1px white;
+  -webkit-border-radius: 7px;
+-moz-border-radius: 7px;
+-o-border-radius: 7px;
+border-radius: 7px;
+  box-shadow: 0 .2em gray; 
+  cursor: pointer;
+}
+
+i {
+  color: black;
+}
+
+#return a, #Cart a{
   text-decoration: none;
   color: gray;
 }
 
-#return:active {
+#return:active, #Cart:active {
 	box-shadow: none;
 	position: relative;
 	top: .2em;
 }
 
+
+@media screen and (max-width: 720px){
+  .col-6{
+    width: 100%;
+    height: auto;
+    text-align: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  #return{
+    justify-content: center;
+  }
+
+  .Information{
+    height: 100%;
+    text-align: center;
+  }
+}
     
 </style>
