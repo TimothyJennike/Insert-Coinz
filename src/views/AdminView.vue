@@ -28,66 +28,128 @@
                 <td>{{product.quantity}}</td>
                 <td><img :src="product.prodImg"></td>
                 <td><button id="delete" @click="deleteProduct(product.prodID)"><i class="bi bi-trash3"></i></button></td>
-                <td><button id="update"><i class="bi bi-pen"></i></button></td>
+                <td>
+                <button id="update" class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="'#updateModal' + `${product.prodID}`">
+                  Update
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" :id="'updateModal' + `${product.prodID}`" tabindex="-1" aria-labelledby="updateModal" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="updateModal">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <form @submit.prevent="updateProduct">
+                        <div class="form-outline mb-4">
+                          <label class="form-label" for="form3Example1cg">Game Image</label>
+                          <input type="URL" id="form3Example1cg" required class="form-control form-control-lg" v-model="product.prodImg"/>
+                        </div>
+            
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="form3Example1cg">Game Name</label>
+                        <input type="text" id="form3Example1cg" required class="form-control form-control-lg" v-model="product.prodName"/>
+                      </div>
+          
+                      <div class="form-outline mb-4">
+                        <label id="form-label" for="form3Example2cg">Description of Game</label>
+                        <input type="text" id="form3Example2cg" required class="form-control form-control-lg" v-model="product.prodDescription"/>
+                      </div>
+          
+                      <div class="form-outline mb-4">
+                        <label id="form-label" for="form3Example2cg">Platform</label>
+                        <input type="text" id="form3Example2cg" class="form-control form-control-lg" v-model="product.platform"/>
+                      </div>
+          
+                      <div class="form-outline mb-4">
+                        <label id="form-label" for="form3Example2cg">Year released</label>
+                        <input type="text" id="form3Example2cg" class="form-control form-control-lg" v-model="product.yearReleased" />
+                      </div>
+          
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="form3Example3cg">Price</label>
+                        <input type="number" id="form3Example3cg" required class="form-control form-control-lg" v-model="product.price" />
+                      </div>
+          
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="form3Example4cg">Developed By</label>
+                        <input type="text" id="form3Example4cg" required class="form-control form-control-lg" v-model="product.developedBy" />
+                      </div>
+          
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="form3Example4cg">Quantity</label>
+                        <input type="number" id="form3Example4cg" required class="form-control form-control-lg" v-model="product.quantity" />
+                      </div>
+          
+                      <div class="d-flex justify-content-center">
+                        <button type="submit"
+                        class="btn bg-success btn-block btn-lg gradient-custom-4 text-body" >Update</button>
+                      </div>
+          
+                      
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      </div>
+                    </form>
+                      </div>
+                      <div class="modal-footer">
+                      </div>
+                    </div>
+                  </div>
+                </div>            
+                </td>
               </tr>
             </tbody>
           </table>
           </div>
           
-    <button type="button" class="newProd" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <button type="button" class="newProd" data-bs-toggle="modal" data-bs-target="#createProd">
       Create a new Product
     </button>
 
         <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="createProd" tabindex="-1" aria-labelledby="createProd" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Create a new Product</h1>
+              <h1 class="modal-title fs-5" id="createProd">Create a new Product</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
     
 
             <form @submit.prevent="newProduct">
 
-              <div class="form-outline mb-4">
-                <label class="form-label" for="form3Example1cg">Game Image</label>
-                <input type="URL" id="form3Example1cg" required class="form-control form-control-lg" v-model="product.prodImg"/>
+              <div class="form-row">
+                <input type="URL" id="form3Example1cg" placeholder="Game Image" required class="form-control form-control-lg" v-model="product.prodImg"/>
               </div>
   
-            <div class="form-outline mb-4">
-              <label class="form-label" for="form3Example1cg">Game Name</label>
-              <input type="text" id="form3Example1cg" required class="form-control form-control-lg" v-model="product.prodName"/>
+            <div class="form-row">
+              <input type="text" id="form3Example1cg"  placeholder="Name" required class="form-control form-control-lg" v-model="product.prodName"/>
             </div>
 
-            <div class="form-outline mb-4">
-              <label id="form-label" for="form3Example2cg">Description of Game</label>
-              <input type="text" id="form3Example2cg" required class="form-control form-control-lg" v-model="product.prodDescription"/>
+            <div class="form-row">
+              <input type="text" id="form3Example2cg" placeholder="Description" required class="form-control form-control-lg" v-model="product.prodDescription"/>
             </div>
 
-            <div class="form-outline mb-4">
-              <label id="form-label" for="form3Example2cg">Platform</label>
-              <input type="text" id="form3Example2cg" class="form-control form-control-lg" v-model="product.platform"/>
+            <div class="form-row">
+              <input type="text" id="form3Example2cg" placeholder="Platform" class="form-control form-control-lg" v-model="product.platform"/>
             </div>
 
-            <div class="form-outline mb-4">
-              <label id="form-label" for="form3Example2cg">Year released</label>
-              <input type="text" id="form3Example2cg" class="form-control form-control-lg" v-model="product.yearReleased" />
+            <div class="form-row">
+              <input type="text" id="form3Example2cg" placeholder="Year Released" class="form-control form-control-lg" v-model="product.yearReleased" />
             </div>
 
-            <div class="form-outline mb-4">
-              <label class="form-label" for="form3Example3cg">Price</label>
-              <input type="number" id="form3Example3cg" required class="form-control form-control-lg" v-model="product.price" />
+            <div class="form-row">
+              <input type="number" id="form3Example3cg" placeholder="Price" required class="form-control form-control-lg" v-model="product.price" />
             </div>
 
-            <div class="form-outline mb-4">
-              <label class="form-label" for="form3Example4cg">Developed By</label>
-              <input type="text" id="form3Example4cg" required class="form-control form-control-lg" v-model="product.developedBy" />
+            <div class="form-row">
+              <input type="text" id="form3Example4cg" placeholder="Developed By" required class="form-control form-control-lg" v-model="product.developedBy" />
             </div>
 
-            <div class="form-outline mb-4">
-              <label class="form-label" for="form3Example4cg">Quantity</label>
-              <input type="number" id="form3Example4cg" required class="form-control form-control-lg" v-model="product.quantity" />
+            <div class="form-row">
+              <input type="number" id="form3Example4cg" placeholder="Quantity" required class="form-control form-control-lg" v-model="product.quantity" />
             </div>
 
             <div class="d-flex justify-content-center">
@@ -198,6 +260,19 @@ methods: {
     this.product.developedBy = '';
     this.product.quantity = '';
   },
+   updateProduct: function(product) {
+    return this.$store.dispatch('updateProduct', {
+      prodID: product.prodID,
+      prodName: product.prodName,
+      category: product.category,
+      price: product.price,
+      quantity: product.quantity,
+      prodImg: product.prodImg,
+      prodDescription: product.prodDescription,
+      developedBy: product.developedBy,
+      yearReleased: product.yearReleased
+    })   
+  },
   deleteUser(id) {
     this.$store.dispatch('deleteUser', id)
   },
@@ -225,6 +300,11 @@ table {
   border-color: black;
   color: black;
   font-size: large;
+}
+
+.modal-content{
+  margin-top: 150px;
+  z-index: -1;
 }
 
 th{

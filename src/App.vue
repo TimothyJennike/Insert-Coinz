@@ -43,4 +43,5 @@ nav a.router-link-exact-active {
   color: violet;
   font-size: 30px;
 }
+
 </style>

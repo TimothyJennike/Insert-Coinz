@@ -54,6 +54,12 @@ const routes = [
     name: 'userprofile',
     component: ()=> import('../views/UserProfileView.vue'),
     props: true
+  },
+  {
+    path: '/user/:id/checkout',
+    name: 'checkout',
+    component: ()=> import('../views/CheckoutView.vue'),
+    props: true
   }
 ]
 

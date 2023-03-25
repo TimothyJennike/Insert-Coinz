@@ -22,7 +22,7 @@
                       </div>
 
                       <div class="form-outline mb-4">
-                        <input type="number" id="form3Example2cg" class="form-control form-control-lg" v-model="register.cellphoneNumber"/>
+                        <input type="tel" id="form3Example2cg" class="form-control form-control-lg" v-model="register.cellphoneNumber"/>
                         <label id="form-label" for="form3Example2cg">Your Cellphone Number</label>
                       </div>
 

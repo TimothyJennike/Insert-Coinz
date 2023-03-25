@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <div class="row">
+    <div class="row d-flex flex-column flex-md-row">
       <div class="col-12">
         <h2>Who are we?</h2><br>
         <p> We are web-page that is passionate about selling YOU quality, affordable and the latest video games AFTER we give you more than enough details about your chosen game!</p><br />        
@@ -23,7 +23,7 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
-  height: 90vh;
+  min-height: 100vh;
 }
 
 .col-12{
@@ -35,6 +35,7 @@ export default {
 h2{
   text-decoration: underline;
   font-family: 'Press Start 2P';
+  margin-right: 50%;
 }
 
 p{
@@ -49,7 +50,7 @@ p{
   display: inline-block;
   font-family: 'Press Start 2P', cursive;
   font-size: 30px;
-  margin-left:200px;
+  margin-right:50%;
   width: 18rem;
   font-weight: bold;
   padding: 10px 0 10px 10px ;
@@ -76,9 +77,14 @@ border-radius: 7px;
 
 @media screen and (max-width: 720px) {
   .col-12{
-    width: 100%;
-    overflow: hidden;
+    min-height: 100vh;
   }
+
+
+
+
+
+
 }
 
 </style>

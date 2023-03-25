@@ -4,7 +4,7 @@ import axios from 'axios'
 const {cookies} = useCookies();
 
 // const InsertCoins = 'https://insert-coinz.onrender.com/'
-const InsertCoins = 'http://localhost:3300/'
+const InsertCoins = 'https://insert-coinz.onrender.com/'
 
 
 export default createStore({
@@ -109,15 +109,15 @@ export default createStore({
         context.commit('setUser', res.data)
       }
     },
-    async updateUser(context, payload) {
-      const res = await axios.post(`${InsertCoins}user`, payload);
-      const {msg, err} = await res.data;
-      if(msg) {
-        context.commit('setUser', msg);
-      } else {
-        context.commit('setUser', err);
-      }
-    },
+    // async updateUser(context, payload) {
+    //   const res = await axios.post(`${InsertCoins}user`, payload);
+    //   const {msg, err} = await res.data;
+    //   if(msg) {
+    //     context.commit('setUser', msg);
+    //   } else {
+    //     context.commit('setUser', err);
+    //   }
+    // },
     async fetchProducts(context) {
       const res = await axios.get(`${InsertCoins}products`);
       console.log(await res.data)
@@ -133,24 +133,15 @@ export default createStore({
       context.commit('setProduct', res.data)
       context.commit('setSpinner', false)
     },
-    // async fetchUser(context, id) {
-    //   console.log(id);
-    //   const res = await axios.get(`${InsertCoins}user/${id}`);
-    //   context.commit('setUser', res.data)
+    // async editProduct(context, {id, payload}) {
+    //   const {res, message} = await axios.put(`${InsertCoins}product/${id}`, payload);
+    //   console.log(id, payload);
+    //   if(res) {
+    //     context.commit('setProduct', res.data)
+    //   } else {
+    //     context.commit('setMessage', message)
+    //   }
     // },
-    // async deleteProduct(context, prodID) {
-    //   const res = await axios.delete(`${InsertCoins}product/${prodID}`);
-    //   context.commit('setProduct', res.data)
-    // }
-    async editProduct(context, {id, payload}) {
-      const {res, message} = await axios.put(`${InsertCoins}product/${id}`, payload);
-      console.log(id, payload);
-      if(res) {
-        context.commit('setProduct', res.data)
-      } else {
-        context.commit('setMessage', message)
-      }
-    },
     async deleteUser({commit, dispatch}, id) {
       try {
         await axios.delete(`${InsertCoins}user/${id}`)
@@ -169,11 +160,67 @@ export default createStore({
         commit('setMessage', 'Unable to delete product')
       }
     },
+    async updateProduct(context, payload) {
+      try {
+        const response = await axios.put(`${InsertCoins}product/${payload.prodID}`, payload);
+        console.log("Response: ", Response);
+        alert('Product Updated')
+        let {result, err} = await response.data;
+        if (result) {
+          context.commit("setUser", response.data);
+        } else {
+          context.commit("setMessage", err);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async updateUser(context, payload) {
+      try {
+        const response = await axios.put(`${InsertCoins}user/${payload.userID}`, payload);
+        console.log("Response: ", Response);
+        alert('Product Updated')
+        let {result, err} = await response.data;
+        if (result) {
+          context.commit("setUser", response.data);
+        } else {
+          context.commit("setMessage", err);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
     async fetchCart(context, id) {
       console.log(id);
       const result = await axios.get(`${InsertCoins}user/${id}/carts`);
       context.commit('setCart', await result.data)
     },
+    async addToCart(context, {userID, payload}) {
+      console.log(userID, payload);
+      const {res, message} = await axios.post(`${InsertCoins}user/${userID}/cart`, payload);
+      if(res) {
+        context.commit('setCart', res.data)
+      } else {
+        context.commit('setMessage', message)
+      }
+    },
+  },
+  async removeFromCart({commit, dispatch}, id) {
+    try {
+      await axios.delete(`${InsertCoins}user/${id}/cart`)
+      commit('setMessage', 'Removed from Cart');
+      dispatch('fetchCart');
+    } catch (error) {
+      commit('setMessage', 'Unable to remove from Cart')
+    }
+  },
+  async clearCart(context, userID) {
+    const {res, message} = await axios.delete(`${InsertCoins}user/${userID}/cart/`);
+    if(res) {
+      context.commit('setCart', await res.data)
+    } else {
+      context.commit('setMessage', message)
+    }
   },
   modules: {
   }

@@ -32,6 +32,9 @@
                 <li class="nav-item-cart" v-if="user">
                   <router-link :to="`/user/${user.userID}/cart`">Cart</router-link>
                 </li>
+                <li class="nav-item" v-if="user">
+                  <router-link :to="`/user/${user.userID}/checkout`">Checkout</router-link>
+                </li>
             </div>
             </ul>
           </div>
@@ -70,6 +73,15 @@ img {
     font-size: 30px;
     box-shadow: 0px -10px 10px 0px rgba(0, 0, 0, 0.5)
 }
+
+.nav-item{
+  display: flex;
+}
+
+.nav-item a {
+  flex-wrap: wrap;
+}
+
 .d-flex li a {
     display: flex;
     color: whitesmoke;
@@ -111,6 +123,10 @@ li{
   .d-flex {
     width: 100%;
     text-align: center;
+  }
+
+  .nav-item {
+    display: flex;
   }
 
   .right {

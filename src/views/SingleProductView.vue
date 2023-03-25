@@ -35,7 +35,7 @@
                 <h4>Developed by: {{product?.developedBy}}</h4>
                 <h4>Quantity: {{product?.quantity}}</h4>
                 <h4>Price: R{{product?.price}}</h4>
-                <button id="Cart">Add to Cart</button>
+                <button id="Cart" @click="addToCart(product)">Add to Cart</button>
               </div>
             </div>
         </div>
@@ -48,6 +48,7 @@
 import {useStore} from 'vuex';
 import SpinnerC from '../components/SpinnerC.vue'
 import {computed} from '@vue/runtime-core';
+import Cookies from 'js-cookie'
 
 export default {
     // computed: {
@@ -80,7 +81,23 @@ export default {
     mounted() {
         this.$store.dispatch("fetchProduct", this.id)
         console.log(this.id);
-    }   
+    },
+    methods: {
+      async addToCart(product) {
+        const userID = Cookies.get('userID', );
+        console.log(userID, product.prodID);
+        this.$store.dispatch('addToCart', {
+          userID: userID,
+          payload: {
+            userID: userID,
+            prodId: product.prodID
+          }
+        })
+      },
+      removeFromCart(id) {
+    this.$store.dispatch('removeFromCart', id)
+  }
+    }  
 }
 </script>
 
@@ -89,7 +106,7 @@ export default {
 .single-product{
     color: black;
     overflow: hidden;
-    height: 90vh;
+    min-height: 100vh;
     background-image: url(https://i.postimg.cc/hjGCx5zc/d0e0e259bf0aba4da742bedff1d4b8a5.gif);
     background-repeat: no-repeat;
     background-size: cover;
@@ -182,11 +199,11 @@ i {
     justify-content: center;
     overflow: hidden;
   }
+  
 
-  #return{
-    justify-content: center;
+  button #Cart{
+    position: absolute;
   }
-
   .Information{
     height: 100%;
     text-align: center;
