@@ -24,6 +24,7 @@ module.exports = app => {
     router.get("/user/:id/carts", cart.findAll);
     router.put("/user/:id/cart", cart.update);
     router.delete("/user/:id/cart", cart.delete);
+    router.delete("/user/:id/cart/", cart.deleteAll);
 
     app.use('/', router);
 };
