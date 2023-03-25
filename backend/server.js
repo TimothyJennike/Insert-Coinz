@@ -11,7 +11,7 @@ var corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(function(req, res, next) {
-    res.setHeader("Access-Control-Allow-Origin", "insert-coins-12639.web.app");
+    res.setHeader("Access-Control-Allow-Origin", "https://insert-coins-12639.web.app");
     res.header("Access-Control-Allow-Credentials", "true")
     res.setHeader("Access-Control-Allow-Methods", "*");
     res.setHeader("Access-Control-Allow-Headers","*"
