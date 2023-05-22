@@ -104,6 +104,8 @@ h4 {
   position:relative;
   display:inline-block;
   margin:20px;
+  background-color: transparent !important;
+  border: none !important;
 }
 
 #btn a{
@@ -155,10 +157,10 @@ h4 {
   border-radius: 5px;
 }
 
-#btn[data-v-9ea40744] {
+/* #btn[data-v-9ea40744] {
   background-color: transparent !important;
   border: none !important;
-}
+} */
 
 
 @media screen and (max-width: 720px) {
