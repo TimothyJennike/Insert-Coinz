@@ -156,8 +156,8 @@ h4 {
 }
 
 #btn[data-v-9ea40744] {
-  background-color: transparent;
-  border: none;
+  background-color: transparent !important;
+  border: none !important;
 }
 
 
